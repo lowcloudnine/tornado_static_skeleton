@@ -4,7 +4,13 @@
 Purpose
 -------
 
-To learn and play with tornado.
+Starts a minimal Tornado server on the port specified and serving index.html
+from templates.
+
+>>> main.py --port=8000
+Tornado started and listening on port 8080
+
+will start the server on port 8000.
 
 """
 # ----------------------------------------------------------------------------
@@ -31,7 +37,6 @@ from handlers.index_handler import IndexHandler
 
 __author__ = 'Jon Schiefelbein'
 __email__ = 'lowcloudnine@hotmail.com'
-
 
 # ----------------------------------------------------------------------------
 # Class:  Application
