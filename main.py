@@ -44,15 +44,17 @@ __email__ = 'lowcloudnine@hotmail.com'
 
 
 class Application(tornado.web.Application):
-    """ Creates an instance of a tornado web application. """
+    """ Creates an instance of a tornado web application.
+    Uses the __init__ from parent to initialize a tornado web application.
 
+    """
     def __init__(self):
         """ Uses the inherited options to create handlers and settings. """
         settings = {
             "template_path": os.path.join(
                 os.path.dirname(__file__), "templates"),
             "static_path": os.path.join(os.path.dirname(__file__), "static"),
-            "autoreload":  True,
+            "autoreload":  True, # same as "debug": True
             "compress_response":  True,
         }
 
@@ -60,6 +62,9 @@ class Application(tornado.web.Application):
             (r"/", IndexHandler),
         ]
 
+        # could use super().__init__(self, the_handlers, **settings) to
+        # give the code a more OO feel but that only works in Python 3
+        # the line below has been tested in both Python 2.7 and 3.4
         tornado.web.Application.__init__(self, the_handlers, **settings)
 
 # ----------------------------------------------------------------------------
@@ -82,7 +87,7 @@ def main():
     # ---- Running the Server
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(tornado.options.options.port)
-    print("Tornado started and listening on port {}"\
+    print("Tornado started and listening on port {}"
           .format(tornado.options.options.port))
     tornado.ioloop.IOLoop.instance().start()
 
