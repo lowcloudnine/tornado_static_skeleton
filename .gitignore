@@ -58,3 +58,8 @@ target/
 
 # PyCharm
 .idea/
+
+# supervisord
+# .sock files are stored in the tmp folder and .log files in the log folder
+*.log
+*.sock
